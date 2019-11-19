@@ -2,7 +2,7 @@ body {
     background-color: chocolate;
 }
 
-h1,h2,h3 {
+h1,h2 {
     text-align: center;
 }
 
@@ -25,9 +25,14 @@ header {
     margin-top: 100px;
     margin-left: 50%;
     transform: translateX(-50%);
+    display: show;
 }
 
 .scoreList {
     text-align: center;
     list-style-type: none;
+}
+
+.quizContent {
+    display: none;
 }

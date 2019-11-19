@@ -1,0 +1,33 @@
+body {
+    background-color: chocolate;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+header {
+    background-color: blanchedalmond;
+    border-bottom: 5px solid sandybrown;
+    min-height: 100px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;  
+}
+
+#startQuiz {
+    margin-top: 100px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.scoreList {
+    text-align: center;
+    list-style-type: none;
+}

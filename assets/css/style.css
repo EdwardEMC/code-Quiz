@@ -2,7 +2,7 @@ body {
     background-color: chocolate;
 }
 
-h1,h2 {
+h1,h2, h3 {
     text-align: center;
 }
 
@@ -12,6 +12,7 @@ header {
     min-height: 100px;
 }
 
+/*Content wrapper for the whole html*/
 .wrapper {
     margin: 0 auto;
     max-width: 960px;
@@ -21,18 +22,54 @@ header {
     flex-direction: column;  
 }
 
+/*button which starts the quiz*/
 #startQuiz {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 50%;
     transform: translateX(-50%);
     display: show;
 }
 
+.timer {
+    display: none;
+    margin-top: 50px;
+}
+
+/*Properties for the highscore list*/
 .scoreList {
     text-align: center;
     list-style-type: none;
 }
 
+/*Placeholder text for before the quiz is started*/
+.placeHolder {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/*Where the quiz questions will be displayed*/
 .quizContent {
     display: none;
+    margin-top: 50px;
+    background-color: blanchedalmond;
+    border-radius: 10px;
+    border: 5px solid black;
+}
+
+/*submit button for the quiz*/
+.submit {
+    margin-bottom: 10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+li {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+li:hover {
+    background-color: lightblue;
+    display: inline-block;
+    border-radius: 10px;
 }

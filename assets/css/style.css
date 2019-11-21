@@ -56,13 +56,6 @@ header {
     border: 5px solid black;
 }
 
-/*submit button for the quiz*/
-.submit {
-    margin-bottom: 10px;
-    margin-left: 50%;
-    transform: translateX(-50%);
-}
-
 li {
     list-style-type: none;
     margin: 10px 0;

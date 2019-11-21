@@ -56,12 +56,12 @@ header {
     border: 5px solid black;
 }
 
-li {
+.choices li {
     list-style-type: none;
     margin: 10px 0;
 }
 
-li:hover {
+.choices li:hover {
     background-color: lightblue;
     display: inline-block;
     border-radius: 10px;

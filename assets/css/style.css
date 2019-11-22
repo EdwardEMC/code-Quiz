@@ -22,12 +22,23 @@ header {
     flex-direction: column;  
 }
 
+.hsSelection {
+    margin-top: 50px;
+}
+
+.quizSelection {
+    display: block;
+    margin-top: 50px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
 /*button which starts the quiz*/
 #startQuiz {
     margin-top: 50px;
     margin-left: 50%;
     transform: translateX(-50%);
-    display: show;
+    display: none;
 }
 
 .timer {
@@ -39,12 +50,14 @@ header {
 .scoreList {
     text-align: center;
     list-style-type: none;
+    font-size: larger;
 }
 
 /*Placeholder text for before the quiz is started*/
 .placeHolder {
     margin-top: 50px;
     text-align: center;
+    display: none;
 }
 
 /*Where the quiz questions will be displayed*/

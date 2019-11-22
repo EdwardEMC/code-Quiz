@@ -1,4 +1,7 @@
+var quizType = ["JavaScript", "Html", "CSS"];
+
 var questions = [
+[   //JavaScript quiz
     {
         title: "Question 1",
         choices: ["This is a choice", "This is also a choice", "so is this"],
@@ -29,4 +32,69 @@ var questions = [
         choices: ["choice 13", "choice 14", "choice 15"],
         answer: "choice 13",
     }
+],  
+[   //Html quiz
+    {
+        title: "Html quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Html quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Html quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Html quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Html quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Html quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    }
+],  
+[   //Css quiz
+    {
+        title: "Css quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Css quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Css quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Css quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Css quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    },
+    {
+        title: "Css quiz",
+        choices: ["choice 1", "choice 2", "choice 3"],
+        answer: "choice 1",
+    }
+]
 ];

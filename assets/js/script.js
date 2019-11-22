@@ -1,4 +1,10 @@
+var jsQuiz = document.querySelector("#jsQuiz");
+var htmlQuiz = document.querySelector("#htmlQuiz");
+var cssQuiz = document.querySelector("#cssQuiz");
 var startButton = document.querySelector("#startQuiz");
+var jsScore = document.querySelector("#jsScore");
+var htmlScore = document.querySelector("#htmlScore");
+var cssScore = document.querySelector("#cssScore");
 var placeHolder = document.querySelector(".placeHolder");
 var quiz = document.querySelector(".quizContent");
 var timer = document.querySelector(".timer");
@@ -8,31 +14,34 @@ var scoreList = document.querySelector(".scoreList");
 
 var y=0; //variable to keep track of which question is shown
 var z=0; //Decides which quiz to display
-var jsHighScoreArray; //Array to keep track of high scores
+var highScoreArray=[[],[],[]]; //Array to keep track of high scores
 
 function highScoreDisplay() { //printing the local storage to the highscore page/the users highscore that has just completed the game
     if(JSON.parse(localStorage.getItem("Highscore"))!==null){
-        jsHighScoreArray = JSON.parse(localStorage.getItem("Highscore"));
 
-            if(document.body.classList.contains("highscore-page")) { //Checks if it is on the highscore page, if so runs the function, if not remains unused
-                for (i=0; i < jsHighScoreArray.length; i++){
+        highScoreArray = JSON.parse(localStorage.getItem("Highscore"));
+
+        if(document.body.classList.contains("highscore-page")) { //Checks if it is on the highscore page
+
+            var quizTypes = document.querySelector(".quizType");
+            quizTypes.textContent = quizType[z];
+
+                for (i=0; i < highScoreArray[z].length; i++){
                     var li = document.createElement("li");
-                    li.textContent = jsHighScoreArray[i].initials + " " + jsHighScoreArray[i].score; //fix up later (add extra words for display purpose)
+                    li.textContent = highScoreArray[z][i].initials + " " + highScoreArray[z][i].score; //fix up later (add extra words for display purpose)
                     scoreList.appendChild(li); 
                 }
-            }
-    }
-    else {
-        jsHighScoreArray = []; //array to track highscores
+        }
     }
 }
 
 highScoreDisplay();
+console.log(highScoreArray);
 
 if(document.body.classList.contains("index-page")){ //Checks if it is on the index page
 
     function quizTimer(){
-        x = questions.length*15;
+        x = questions[z].length*15;
         timeRemaining.innerHTML = x;
         timing = setInterval(function(){
             x--;
@@ -48,10 +57,10 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
     function choicesArray() {
         var quizContent = document.querySelector(".choices");
         var title = document.querySelector(".title");
-        var questionsContent = questions[y].choices;
-        title.textContent = questions[y].title;
+        var questionsContent = questions[z][y].choices;
+        title.textContent = questions[z][y].title;
 
-        for (i=0; i<questions[y].choices.length; i++){
+        for (i=0; i<questions[z][y].choices.length; i++){
             var li = document.createElement("li");
             li.textContent = questionsContent[i];
             li.setAttribute("id", i);
@@ -69,10 +78,12 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
             placeHolder.textContent = "Congrats " + initials + " on finishing the quiz! You're score was " + x + ".";
             placeHolder.style.display = "block";
 
-            jsHighScoreArray.push({"initials":initials, "score":x});
-            console.log(jsHighScoreArray);
+            highScoreArray[z].push({"initials":initials, "score":x}); // Push the new score and initials to the corresponding array
 
-            localStorage.setItem("Highscore", JSON.stringify(jsHighScoreArray)); //saves to local storage (working!)
+            console.log(highScoreArray);
+            console.log(highScoreArray[z]);
+
+            localStorage.setItem("Highscore", JSON.stringify(highScoreArray)); //Stringify the highscore array and saves to local storage
 
             
             highScoreDisplay(); //Prints to highscore list
@@ -93,13 +104,13 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
     userChoice.addEventListener("click", function(event){
         
         var userPickId = event.target.id;
-        var userPick = questions[y].choices[userPickId];
+        var userPick = questions[z][y].choices[userPickId];
 
         console.log(userPick);
-        console.log(questions[y].answer);
-        console.log(questions.length);
+        console.log(questions[z][y].answer);
+        console.log(questions[z].length);
 
-        if (userPick === questions[y].answer) {
+        if (userPick === questions[z][y].answer) {
             alert("You've picked correctly!");
         }
         else {
@@ -107,7 +118,7 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
             x = x - 15;
         }
 
-        if(y==questions.length-1) { //cancels the next question from being produced if it is at the end of the array
+        if(y==questions[z].length-1) { //cancels the next question from being produced if it is at the end of the array
             alert("You've completed the quiz!");
             clearContent();
             quiz.style.display = "none";
@@ -124,7 +135,7 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
         }
     })
 
-    startButton.addEventListener("click", function startQuiz() {
+    startButton.addEventListener("click", function startQuiz() { //Starts the quiz and timer
         quiz.style.display = "block";
         placeHolder.style.display = "none";
         startButton.style.display = "none";
@@ -133,4 +144,49 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
         choicesArray();
     })
 
+    //Eventlisteners for quiz selection buttons, sets z index to related questions array/highscore array
+    jsQuiz.addEventListener("click", function setJsQuiz() {
+        z = 0;
+        startButton.style.display = "block";
+        clearQuizButtons();
+    })
+
+    htmlQuiz.addEventListener("click", function setHtmlQuiz() {
+        z = 1;
+        startButton.style.display = "block";
+        clearQuizButtons();
+    })
+
+    cssQuiz.addEventListener("click", function setCssQuiz() {
+        z = 2;
+        startButton.style.display = "block";
+        clearQuizButtons();
+    })
+
+    function clearQuizButtons() {
+        jsQuiz.style.display = "none";
+        htmlQuiz.style.display = "none";
+        cssQuiz.style.display = "none";
+        document.querySelector(".placeHolder").style.display = "block";
+    }
+}
+
+if(document.body.classList.contains("highscore-page")) {
+    jsScore.addEventListener("click", function setJsQuiz() { //displays the choosen scores on the highscore list
+        z = 0;
+        scoreList.innerHTML = " ";
+        highScoreDisplay();
+    })
+
+    htmlScore.addEventListener("click", function setHtmlQuiz() {
+        z = 1;
+        scoreList.innerHTML = " ";
+        highScoreDisplay();
+    })
+
+    cssScore.addEventListener("click", function setCssQuiz() {
+        z = 2;
+        scoreList.innerHTML = " ";
+        highScoreDisplay();
+    })   
 }

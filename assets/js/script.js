@@ -75,7 +75,7 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
     function highScore(){
         if(x>0) { //if incorrect answer on last questions leads to a negative time
             initials = prompt("What are your initials?");
-            placeHolder.textContent = "Congrats " + initials + " on finishing the quiz! You're score was " + x + ".";
+            placeHolder.textContent = "Congrats " + initials + " on finishing the quiz! You're score was " + x + ". Click the button to start the quiz again and see if you can better your score or select home in the navigation bar to go back and try another quiz!";
             placeHolder.style.display = "block";
 
             highScoreArray[z].push({"initials":initials, "score":x}); // Push the new score and initials to the corresponding array

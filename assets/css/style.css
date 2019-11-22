@@ -26,6 +26,7 @@ header {
     margin-top: 50px;
 }
 
+/*Buttons for selecting which quiz the user wants to take*/
 .quizSelection {
     display: block;
     margin-top: 50px;

@@ -168,6 +168,7 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
         htmlQuiz.style.display = "none";
         cssQuiz.style.display = "none";
         document.querySelector(".placeHolder").style.display = "block";
+        document.querySelector(".placeHolder").textContent = placeHolders[z];
     }
 }
 

@@ -1,4 +1,4 @@
-var quizType = ["JavaScript", "Html", "CSS"];
+var quizType = ["JavaScript", "Html", "CSS"]; //Score list titles
 
 var questions = [
 [   //JavaScript quiz
@@ -98,3 +98,9 @@ var questions = [
     }
 ]
 ];
+
+var placeHolders = [ //Placeholder array
+    "This is a placeholder text for JavaScript that you are free to read at your leisure but don't forget about the quiz!",
+    "This is a placeholder text for Html that you are free to read at your leisure but don't forget about the quiz!",
+    "This is a placeholder text for Css that you are free to read at your leisure but don't forget about the quiz!",
+]

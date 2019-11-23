@@ -1,4 +1,4 @@
-var quizType = ["JavaScript", "Html", "CSS"]; //Score list titles
+var quizType = ["JavaScript", "HTML", "CSS"]; //Score list titles
 
 var questions = [
 [   //JavaScript quiz

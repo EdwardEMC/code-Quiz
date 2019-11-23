@@ -12,8 +12,8 @@ var timeRemaining = document.querySelector(".timeRemaining");
 var userChoice = document.querySelector(".choices");
 var scoreList = document.querySelector(".scoreList");
 
-var y=0; //variable to keep track of which question is shown
-var z=0; //Decides which quiz to display
+var y=0; //Variable to keep track of which question is shown
+var z=0; //Variable to decide which quiz to display
 var highScoreArray=[[],[],[]]; //Array to keep track of high scores
 
 function highScoreDisplay() { //printing the local storage to the highscore page/the users highscore that has just completed the game
@@ -21,14 +21,14 @@ function highScoreDisplay() { //printing the local storage to the highscore page
 
         highScoreArray = JSON.parse(localStorage.getItem("Highscore"));
 
-        if(document.body.classList.contains("highscore-page")) { //Checks if it is on the highscore page
+        if(document.body.classList.contains("highscore-page")) { //Checks if it is on the highscore page and if so runs the functions
 
             var quizTypes = document.querySelector(".quizType");
             quizTypes.textContent = quizType[z];
 
                 for (i=0; i < highScoreArray[z].length; i++){
                     var li = document.createElement("li");
-                    li.textContent = highScoreArray[z][i].initials + " " + highScoreArray[z][i].score; //fix up later (add extra words for display purpose)
+                    li.textContent = highScoreArray[z][i].initials + " " + highScoreArray[z][i].score;
                     scoreList.appendChild(li); 
                 }
         }
@@ -38,7 +38,7 @@ function highScoreDisplay() { //printing the local storage to the highscore page
 highScoreDisplay();
 console.log(highScoreArray);
 
-if(document.body.classList.contains("index-page")){ //Checks if it is on the index page
+if(document.body.classList.contains("index-page")){ //Checks if it is on the index page and if so runs the functions
 
     function quizTimer(){
         x = questions[z].length*15;
@@ -49,7 +49,8 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
             
             if(x===0){
                 clearInterval(timing);
-                alert("Time is up, you lose!");
+                alert("Time is up, you lose!"); //needs to stop the quiz and take you back to home page
+                location.reload(); // reset question array counter
             }
         }, 1000)
     }
@@ -83,20 +84,23 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
             console.log(highScoreArray);
             console.log(highScoreArray[z]);
 
+            highScoreArray[z]=highScoreArray[z].sort(function(a, b) { //sort array by highest to lowest
+                return b.score - a.score
+            });
+
             localStorage.setItem("Highscore", JSON.stringify(highScoreArray)); //Stringify the highscore array and saves to local storage
 
-            
             highScoreDisplay(); //Prints to highscore list
 
             //resets the quiz so you can start again
             startButton.textContent = "Start the quiz again?";
             startButton.style.display = "block";
-            y=0; // reset question array counter
-            
+            y=0; // reset question array counter  
         }
         else {
             alert("You have run out of time, please try again!");
-            startButton.style.display = "block";
+            startButton.style.display = "block"; //needs to take you back to home page
+            clearContent();
             y=0; // reset question array counter
         }
     }
@@ -106,32 +110,37 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
         var userPickId = event.target.id;
         var userPick = questions[z][y].choices[userPickId];
 
-        console.log(userPick);
-        console.log(questions[z][y].answer);
-        console.log(questions[z].length);
+        if(Number.isInteger(parseInt(userPickId))){ //Making sure the user has clicked an answer and not the space between the li elements
+            console.log(userPick);
+            console.log(questions[z][y].answer);
+            console.log(questions[z].length);
 
-        if (userPick === questions[z][y].answer) {
-            alert("You've picked correctly!");
-        }
-        else {
-            alert("That is incorrect!")
-            x = x - 15;
-        }
+            if (userPick === questions[z][y].answer) {
+                alert("You've picked correctly!");
+            }
+            else {
+                alert("That is incorrect!")
+                x = x - 15;
+            }
 
-        if(y==questions[z].length-1) { //cancels the next question from being produced if it is at the end of the array
-            alert("You've completed the quiz!");
+            if(y==questions[z].length-1) { //cancels the next question from being produced if it is at the end of the array
+                alert("You've completed the quiz!");
+                clearContent();
+                quiz.style.display = "none";
+                timer.style.display = "none";
+                clearInterval(timing);
+                highScore();
+            }
+
+            else {
+            y=y+1;
+            console.log(y);
             clearContent();
-            quiz.style.display = "none";
-            timer.style.display = "none";
-            clearInterval(timing);
-            highScore();
+            choicesArray();
+            }
         }
-
         else {
-        y=y+1;
-        console.log(y);
-        clearContent();
-        choicesArray();
+            return;
         }
     })
 

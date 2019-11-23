@@ -77,6 +77,5 @@ header {
 
 .choices li:hover {
     background-color: lightblue;
-    display: inline-block;
     border-radius: 10px;
 }

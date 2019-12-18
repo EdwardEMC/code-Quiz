@@ -36,17 +36,14 @@ function highScoreDisplay() { //printing the local storage to the highscore page
 }
 
 highScoreDisplay();
-console.log(highScoreArray);
 
-if(document.body.classList.contains("index-page")){ //Checks if it is on the index page and if so runs the functions
-
+if(document.body.classList.contains("index-page")){ //Checks if it is on the index page and if so runs the function
     function quizTimer(){
         x = questions[z].length*15;
         timeRemaining.innerHTML = x;
         timing = setInterval(function(){
             x--;
             timeRemaining.innerHTML = x;      
-            
             if(x===0){
                 clearInterval(timing);
                 alert("Time is up, you lose!"); //needs to stop the quiz and take you back to home page
@@ -81,9 +78,6 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
 
             highScoreArray[z].push({"initials":initials, "score":x}); // Push the new score and initials to the corresponding array
 
-            console.log(highScoreArray);
-            console.log(highScoreArray[z]);
-
             highScoreArray[z]=highScoreArray[z].sort(function(a, b) { //sort array by highest to lowest
                 return b.score - a.score
             });
@@ -111,10 +105,6 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
         var userPick = questions[z][y].choices[userPickId];
 
         if(Number.isInteger(parseInt(userPickId))){ //Making sure the user has clicked an answer and not the space between the li elements
-            console.log(userPick);
-            console.log(questions[z][y].answer);
-            console.log(questions[z].length);
-
             if (userPick === questions[z][y].answer) {
                 alert("You've picked correctly!");
             }
@@ -134,7 +124,6 @@ if(document.body.classList.contains("index-page")){ //Checks if it is on the ind
 
             else {
             y=y+1;
-            console.log(y);
             clearContent();
             choicesArray();
             }
